@@ -1,0 +1,111 @@
+class Node:
+    def __init__(self, data) -> None:
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self) -> None:
+        self.head = None
+        self.tail = None
+        self.length = 0
+
+    def add(self,data, id):
+        newnode = Node(data)
+        if self.head is None:
+            self.head = newnode
+        elif id == 0:
+            temp = self.head
+            self.head = newnode
+            self.head.next = temp
+        elif id == self.length:
+            self.tail.next = newnode
+            self.tail = newnode
+        else:
+            cur_node = self.head
+            cur_id = 0
+            while cur_id < id-1:
+                cur_node = cur_node.next
+            next_node = cur_node.next
+
+            cur_node.next = newnode
+            newnode.next = next_node
+        self.length += 1
+
+
+    def add_last(self, data):
+        newnode = Node(data)
+        if self.head == None:
+            self.head = newnode
+            self.tail = newnode
+        else:
+            self.tail.next = newnode
+            self.tail = newnode
+        self.length += 1
+
+    def add_first(self, data):
+        newnode = Node(data)
+        if self.head == None:
+            self.head = newnode
+            self.tail = newnode
+        else:
+            cur = self.head
+            self.head = newnode
+            self.head.next = cur
+        self.length += 1
+
+    def remove_last(self):
+        if self.head is None:
+            print('your list is empty')
+        elif self.head.next is None:
+            self.head = None
+        else:
+            cur = self.head
+            while cur.next.next is not None:
+                cur = cur.next
+            cur.next = None
+        self.length -= 1
+
+    def remove_first(self):
+        if self.head is None:
+            print('your list is empty')
+        elif self.head.next is None:
+            self.head = None
+        else:
+            self.head = self.head.next
+        self.length -= 1
+
+    def index(self, id):
+        if id >= self.length:
+            print('index out of the range')
+        else:
+            cur_id = 0
+            value_id = self.head
+            while cur_id < id:
+                value_id = value_id.next
+                cur_id += 1
+            print(value_id.data)
+
+    def len(self):
+        print(self.length)
+
+    def print(self):
+        cur = self.head
+        while cur is not None:
+            print(cur.data, end=' ')
+            cur = cur.next
+
+# ll.append(0)
+ll = LinkedList()
+# ll.add_first(1)
+# ll.add_last(2)
+# ll.add_first(3)
+# ll.add_last(4)
+# ll.index(4)
+# ll.print()
+# ll.len()
+
+ll.add_first(1)
+ll.add(2, 0)
+ll.add(4, 2)
+ll.add(5, 1)
+ll.print()
