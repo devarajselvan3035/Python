@@ -5,6 +5,10 @@ def merge_sort(arr):
         mid = len(arr) // 2
         left = arr[:mid]
         right = arr[mid:]
+        print('before merge')
+        print(f'left {left}')
+        print(f'right {right}')
+        print()
 
         merge_sort(left)
         merge_sort(right)
