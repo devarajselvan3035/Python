@@ -34,8 +34,6 @@ class Stack:
         return_value = self.head
         if self.head is None:
             raise ValueError("Stack is Empty")
-        elif self.head.next is None:
-            self.head = None
         else:
             self.head = self.head.next
         self.lenght -= 1
