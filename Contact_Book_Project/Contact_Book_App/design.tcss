@@ -1,0 +1,13 @@
+Button {
+   width: 1fr;
+}
+
+#exit_container {
+    width: 1fr;
+    align: center bottom;
+}
+
+#container {
+    margin: 4 2;
+   align: center middle;
+}
