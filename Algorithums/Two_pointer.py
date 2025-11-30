@@ -14,9 +14,10 @@
 #         min_value = n
 
 # print(min_value, max_value)
-
-# Input: nums = [0,0,1,1,1,2,2,3,3,4]
-# Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+"""
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+"""
 
 nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
 # nums = [1,1,2]
@@ -37,13 +38,14 @@ print(j + 1, nums)
 #     print(-1)
 # print(position)
 
-
-# Input: forts = [1,0,0,-1,0,0,0,0,1]
-# Output: 4
-# Explanation:
-# - Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.
-# - Moving the army from position 8 to position 3 captures 4 enemy forts.
-# Since 4 is the maximum number of enemy forts that can be captured, we return 4.
+"""
+Input: forts = [1,0,0,-1,0,0,0,0,1]
+Output: 4
+Explanation:
+- Moving the army from position 0 to position 3 captures 2 enemy forts, at 1 and 2.
+- Moving the army from position 8 to position 3 captures 4 enemy forts.
+Since 4 is the maximum number of enemy forts that can be captured, we return 4.
+"""
 forts = [1, 0, 0, -1, 0, 0, 0, 0, 1]
 # forts = [-1,0,-1,0,1,1,1,-1,-1,-1]
 
@@ -574,25 +576,111 @@ forts = [1, 0, 0, -1, 0, 0, 0, 0, 1]
 #         o += 1
 # print(ans)
 
+"""
+925. Long Pressed Name
+Your friend is typing his name into a keyboard. Sometimes, when typing a character c, the key might get long pressed, and the character will be typed 1 or more times.
+You examine the typed characters of the keyboard. Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed.
+Example 1:
+Input: name = "alex", typed = "aaleex"
+Output: true
+Explanation: 'a' and 'e' in 'alex' were long pressed.
+Example 2:
+Input: name = "saeed", typed = "ssaaedd"
+Output: false
+Explanation: 'e' must have been pressed twice, but it was not in the typed output.
+"""
+name = "alex"
+typed = "aaleexxxxx"
 
-# 925. Long Pressed Name
-# Your friend is typing his name into a keyboard. Sometimes, when typing a character c, the key might get long pressed, and the character will be typed 1 or more times.
-# You examine the typed characters of the keyboard. Return True if it is possible that it was your friends name, with some characters (possibly none) being long pressed.
-# Example 1:
-# Input: name = "alex", typed = "aaleex"
-# Output: true
-# Explanation: 'a' and 'e' in 'alex' were long pressed.
-# Example 2:
-# Input: name = "saeed", typed = "ssaaedd"
-# Output: false
-# Explanation: 'e' must have been pressed twice, but it was not in the typed output.
-name = "saeed"
-typed = "ssaaeddef"
 
-l, r, flag = 0, 0, 0
-while r < len(typed) and l < len(name):
-    if name[l] == typed[r]:
-        flag += 1
-        l += 1
-    r += 1
-print(r)
+def Longpressedname(name: str, typed: str) -> bool:
+    n, t = 0, 0
+    while t < len(typed):
+        if n < len(name) and (name[n] == typed[t]):
+            n += 1
+        elif t == 0 or (typed[t] != typed[t - 1]):
+            return False
+        t += 1
+
+    return n == len(name)
+
+
+# print(Longpressedname(name, typed))
+"""
+Input = [1,0,2,0,3,0]
+Output = [1,2,3,0,0,0]
+"""
+arr = [1, 0, 2, 0, 3, 0]
+
+
+def Rearrange(ip: list) -> list:
+    l, r, f = 0, 0, 0
+    while r < len(ip):
+        if ip[l] != 0:
+            l += 1
+            f = 0
+
+        if r != 0 and f == 1:
+            ip[r], ip[l] = ip[l], ip[r]
+
+        if ip[l] == 0:
+            f = 1
+
+        r += 1
+    return ip
+
+
+# print(Rearrange(arr))
+#
+"""
+125. Valid palindrome
+=====================
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+"""
+s = "A man, a plan, a canal: Panama"
+
+
+def isPalindrome(s: str) -> bool:
+    l, r = 0, len(s) - 1
+    while l < r:
+        if not s[l].isalnum():
+            l += 1
+        elif not s[r].isalpha():
+            r -= 1
+        elif s[l].lower() == s[r].lower():
+            l += 1
+            r -= 1
+        elif s[l].lower() != s[r].lower():
+            return False
+
+    return True
+
+
+# print(isPalindrome(s))
+"""
+136. Single Number
+==================
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one
+Example 1:
+Input: nums = [2,2,1]
+Output: 1
+"""
+arr = [4, 1, 2, 1, 2]
+
+
+def singleNumber(nums: list):
+    arr = []
+    multiple = []
+    for n in nums:
+        if n not in arr:
+            arr.append(n)
+        else:
+            multiple.append(n)
+    res = set(arr).difference(set(multiple))
+    return list(res)
+
+
+# print(singleNumber(arr))
+

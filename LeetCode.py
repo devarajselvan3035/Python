@@ -45,6 +45,8 @@ Examples:
 Input 1 -> 2 -> 4, 1 -> 3 -> 4
 Output: 1 -> 1 -> 2 -> 3 -> 4 -> 4
 """
+
+from re import A
 from Data_Structure.Singel_LinkedList import LinkedList, Node
 
 list1 = LinkedList(1, 2, 3)
@@ -133,7 +135,6 @@ strs = ["flower", "flow", "flight"]
 
 # O(n^2) time complexity
 def longestCommonPrefix(strs: list) -> str:
-
     res = strs[0][0]
     min_len = min([len(s) for s in strs])
     for idx in range(min_len):
@@ -146,7 +147,6 @@ def longestCommonPrefix(strs: list) -> str:
 
 # O(n) time complexity
 def simpleCommonPrefix(strs: list) -> str:
-
     if not strs:
         return ""
 
@@ -238,4 +238,103 @@ def removeDuplicates(nums: list):
     return nums
 
 
-print(removeDuplicates)
+# print(removeDuplicates)
+
+"""
+94. Binary Tree Inorder Traversal
+=================================
+"""
+
+"""
+118. Pascal's Triangle
+======================
+"""
+
+
+def PascalTriangle(numrows: int):
+    res = []
+    for r in range(1, numrows + 1):
+        col = []
+        for c in range(r):
+            if c == 0 or c == r - 1:
+                col.append(1)
+            else:
+                # print(res, r)
+                need_col = res[r - 2]
+                print(need_col, c)
+                col.append(need_col[c] + need_col[c - 1])
+        res.append(col)
+
+    return res
+
+
+# print(PascalTriangle(5))
+
+"""
+121. Best time to buy and shell stock
+=====================================
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+"""
+# arr = [7, 1, 5, 3, 6, 4]
+arr = [7, 6, 4, 3, 1]
+
+
+def maxProfit(prices: list) -> int:
+    pass
+
+
+# print(maxProfit(arr))
+
+"""
+168. Excel sheet column title
+Given an integer colum number, return its corresponding column title.
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28 
+...
+"""
+
+
+def convertToTitle(colnum: int) -> str:
+    ans = ""
+    while colnum > 0:
+        rem = colnum % 26
+        if rem == 0:
+            ans = "Z" + ans
+        else:
+            ans = chr(rem + 64) + ans
+        colnum = (colnum - 1) // 26
+
+    return ans
+
+
+def convertToTitle2(colnum: int):
+    if colnum < 27:
+        return chr(colnum + 64)
+    return convertToTitle2((colnum - 1) // 26) + chr(((colnum - 1) % 26) + 65)
+
+
+# print(convertToTitle(701))
+# print(convertToTitle2(701))
+#
+"""
+88. Merge Sorted Array
+======================
+Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+Output: [1,2,2,3,5,6]
+Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+"""
+
+
+def merge(nums1: list, n1: int, nums2: list, n2: int):
+    ans = []
