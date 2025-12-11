@@ -46,29 +46,32 @@ class BinaryTree:
 
 
 if __name__ == "__main__":
-    node = Node(5)
-    print(node, node.key)
+    """
+    100. Same Tree
+    ===============
+    Given the roots of two binary trees 'p' and 'q', write a fucntion to check if
+    they are same or not. Two binary trees are considered the same if they are structurally 
+    identiacl, and the nodes have the same value.
+    """
+    p_arr, q_arr = [1, 2, 3], [1, 2, 3]
 
-    bt = BinaryTree()
-    bt.insert(4)
-    bt.insert(2)
-    bt.insert(6)
-    bt.insert(1)
-    bt.insert(3)
-    bt.insert(5)
-    bt.insert(7)
-    bt._in_order_traversal(bt.root)
+    def createTree(arr:list) -> Node:
+        tree = BinaryTree()
+        for v in arr:
+            tree.insert(v)
+        return tree.root
 
-    print()
+    p = createTree(p_arr)
+    q = createTree(q_arr)
 
-    ### Invert BinaryTree
-    def invertBinaryTree(node: Node) -> None:
-        if not node:
-            return None
-        node.left, node.right = node.right, node.left
-        invertBinaryTree(node.left)
-        invertBinaryTree(node.right)
-        return node
+    def isSameTree(p:Node, q:Node) -> bool:
+        if p is None and q is None:
+            return True
+        if p is None or q is None or p.key != q.key:
+            return False
+        return isSameTree(p.left, q.left) and isSameTree(p.right, q.right)
 
-    root_node = invertBinaryTree(bt.root)
-    bt._in_order_traversal(root_node)
+    print(isSameTree(p, q))
+
+
+  
