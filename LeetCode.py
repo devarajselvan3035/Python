@@ -1,3 +1,5 @@
+from typing import List
+
 ## Longest Substring Without Repeating Characters
 #  ==============================================
 
@@ -324,7 +326,7 @@ def convertToTitle2(colnum: int):
 
 
 # print(convertToTitle(701))
-# print(convertToTitle2(701))
+print(convertToTitle2(18278))
 #
 """
 88. Merge Sorted Array
@@ -337,4 +339,59 @@ The result of the merge is [1,2,2,3,5,6] with the underlined elements coming fro
 
 
 def merge(nums1: list, n1: int, nums2: list, n2: int):
-    ans = []
+    pass
+
+
+"""
+169. Majority Element
+======================
+Given an arrya nums of size n, returh the majority element.
+
+The majority element is the element that appears more than n/2 times.
+You may assume that the majority element always exits in the array.
+"""
+nums = [3, 2, 3]
+
+
+def majorityElement(nums: List[int]) -> int:
+    count = {}
+    for n in nums:
+        if n not in count:
+            count[n] = 1
+        else:
+            count[n] += 1
+
+    max_count = max(count.values())
+    print(count)
+    print(count[max_count])
+
+
+# majorityElement(nums)
+
+"""
+171. Excel Sheet Column Number
+
+Given a string ColumnTitle the represent sthe column title as appears in 
+an excel sheet, return its corresponding column number.
+
+1 -> A
+2 -> B
+...
+26 -> Z
+27 -> AA
+28 -> AB
+"""
+
+
+def titleToNumber(columnTitle: str) -> int:
+    exp = 0
+    res = 0
+    for c in columnTitle:
+        res += 26**exp * (ord(c) - ord("A") + 1)
+        exp += 1
+        print(res, exp)
+
+    return res
+
+
+print(titleToNumber("AAA"))

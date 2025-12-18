@@ -22,3 +22,14 @@ def findMin(arr: list) -> int:
 
 arr = [3, 7, 1, -10, 5, 9, 0]
 print(findMin(arr))
+
+
+# Revers string using recursion
+#
+def reverse(string: str) -> str:
+    if len(string) == 1:
+        return string[0]
+    return reverse(string[1:]) + string[0]
+
+
+print(reverse("hello world"))
