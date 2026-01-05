@@ -53,7 +53,7 @@ from Data_Structure.Singel_LinkedList import LinkedList, Node
 
 list1 = LinkedList(1, 2, 3)
 list2 = LinkedList(1, 2, 4)
-print(list1, list2)
+# print(list1, list2)
 
 
 def mergeTwoLinkedList(list1: Node, list2: Node):
@@ -294,6 +294,28 @@ def maxProfit(prices: list) -> int:
 168. Excel sheet column title
 Given an integer colum number, return its corresponding column title.
 For example:
+    count = {}
+    count = {}
+    for n in nums:
+        if n not in count:
+            count[n] = 1
+        else:
+            count[n] += 1
+
+    max_count = max(count.values())
+    print(count)
+    print(count[max_count])
+
+    for n in nums:
+        if n not in count:
+            count[n] = 1
+        else:
+            count[n] += 1
+
+    max_count = max(count.values())
+    print(count)
+    print(count[max_count])
+
 
 A -> 1
 B -> 2
@@ -350,20 +372,28 @@ Given an arrya nums of size n, returh the majority element.
 The majority element is the element that appears more than n/2 times.
 You may assume that the majority element always exits in the array.
 """
-nums = [3, 2, 3]
+# nums = [3, 2, 3]
+nums = [2, 2, 1, 1, 1, 2, 2]
 
 
 def majorityElement(nums: List[int]) -> int:
-    count = {}
-    for n in nums:
-        if n not in count:
-            count[n] = 1
+    sort_nums = sorted(nums)
+    l, r = 0, 0
+    while r < len(nums):
+        if sort_nums[l] == sort_nums[r]:
+            r += 1
         else:
-            count[n] += 1
+            count = len(sort_nums[l:r])
+            print(count, len(nums) / 2)
+            if count >= len(nums) / 2:
 
-    max_count = max(count.values())
-    print(count)
-    print(count[max_count])
+                return l
+            l = r
+    if len(sort_nums[l:r]) >= len(nums) / 2:
+        return l
+
+
+majorityElement(nums)
 
 
 # majorityElement(nums)
@@ -389,9 +419,9 @@ def titleToNumber(columnTitle: str) -> int:
     for c in columnTitle:
         res += 26**exp * (ord(c) - ord("A") + 1)
         exp += 1
-        print(res, exp)
+        # print(res, exp)
 
     return res
 
 
-print(titleToNumber("AAA"))
+# print(titleToNumber("AAA"))
