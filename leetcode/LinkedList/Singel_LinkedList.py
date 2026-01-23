@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, value) -> None:
+    def __init__(self, value, next=None) -> None:
         self.value = value
-        self.next = None
+        self.next = next
 
 
 class LinkedList:

@@ -16,12 +16,12 @@ Output: true
 
 
 def canConstruct(ransomNote: str, magazine: str) -> bool:
-    l, r = 0, 0
-    while l < len(ransomNote) and r < len(magazine):
-        if ransomNote[l] != magazine[r]:
+    for c in ransomNote:
+        idx = magazine.find(c)
+        if idx == -1:
             return False
-        l += 1
-        r += 1
+        else:
+            magazine = magazine[:idx] + magazine[idx + 1 :]
     return True
 
 

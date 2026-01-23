@@ -15,13 +15,18 @@ Output: "-10"
 
 def base7(num: int) -> str:
     res = ""
+    mul = 1
+
+    if num < 0:
+        num = -1 * num
+        mul = -1
 
     while 7 <= num or num <= -7:
         rem = num % 7
         res = str(rem) + res
         num //= 7
         print(rem, num)
-    return str(num) + res
+    return str(mul * num) + res
 
 
 # print(base7(100))
