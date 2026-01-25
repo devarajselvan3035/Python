@@ -1,18 +1,40 @@
 """
-82. Remove Duplicates form Sorted List II
+82. Remove Duplicates form Sorted List II(***)
 =========================================
 Given the head of a sorted linked list, delete all nodes that have duplicate numbers. leaving only distinct
 numbers form the original list. Return the linked list sorted as well.
-Example 1:
-Input  : 1->1->1->2->3
-Output : 2->3
 """
 
 from Singel_LinkedList import LinkedList, Node
 from typing import Optional
 
+"""
+Example 1:
+Input  : 1->1->1->2->3
+Output : 1->2->3
+"""
 
+
+# NOTE: It deletes only extra duplicate values
 def deleteDuplicates(head: Optional[Node]) -> Optional[Node]:
+    cur = head
+
+    while cur:
+        while cur.next and cur.next.value == cur.value:
+            cur.next = cur.next.next
+        cur = cur.next
+    return head
+
+
+"""
+Example 1:
+Input  : 1->1->1->2->3
+Output : 2->3
+"""
+
+
+# NOTE: It deletes all duplicate values
+def deleteDuplicates1(head: Optional[Node]) -> Optional[Node]:
     not_add = 101
     res = Node(0)
     curdNode = res
@@ -33,8 +55,8 @@ def deleteDuplicates(head: Optional[Node]) -> Optional[Node]:
 
 
 # ip = [1, 1, 1, 2, 3]
-# ip = [1, 2, 2]
-ip = [1, 2, 3, 3, 4, 4, 5]
+ip = [1, 1, 2, 2]
+# ip = [1, 2, 3, 3, 4, 4, 5]
 ll = LinkedList()
 for i in ip:
     ll.append(i)
