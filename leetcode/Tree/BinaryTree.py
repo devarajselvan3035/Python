@@ -10,37 +10,30 @@ class BinaryTree:
         self.root = None
         self.stack = []
 
-    # HACK: This insert method implemented using stack with the list function, This process
-    def insert_arr(self, value):
-        leftNode = Node()
-        rightNode = Node()
-
-        if self.root is None:
-            newNode = Node(value)
-            self.root = newNode
-
-            self.root.left = leftNode
-            self.root.right = rightNode
-
-        else:
-            node = self.stack[0]
-            self.stack = self.stack[1:]
-
-            node.value = value
-
-            node.left = leftNode
-            node.right = rightNode
-
-        self.stack.append(leftNode)
-        self.stack.append(rightNode)
-
-    # HACK: Insert value binary tree using recursion
-    def insert_recursion(self, value) -> None:
+    # HACK: This insert method implemented using queue with the list function, This process
+    def insert_queue(self, value) -> None:
         newNode = Node(value)
         if self.root is None:
             self.root = newNode
-            return
-        self._recursiveInsert(self.root, value)
+        else:
+            queue = []
+            queue.append(self.root)
+
+            while True:
+                temp = queue[0]
+                queue = queue[1:]
+
+                if temp.left is None:
+                    temp.left = newNode
+                    break
+                elif temp.left.value is not None:
+                    queue.append(temp.left)
+
+                if temp.right is None:
+                    temp.right = newNode
+                    break
+                elif temp.right.value is not None:
+                    queue.append(temp.right)
 
     def _recursiveInsert(self, root, value):
         if root.left is None:
@@ -70,15 +63,4 @@ class BinaryTree:
                 queue.append(node.right)
 
 
-ip = [1, 2, 3, 4, 5, 5, 6]
-tree = BinaryTree()
-for i in ip:
-    tree.insert_recursion(i)
-
-tree.DFS(tree.root)
-# root = tree.root
-# print(root.left.value)
-# print(root.right.value)
-# print(root.value)
-# print(root.left.left.value)
-# print(root.left.left.left.value)
+print("hello")
