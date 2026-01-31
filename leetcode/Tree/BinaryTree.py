@@ -61,6 +61,3 @@ class BinaryTree:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-
-
-print("hello")
