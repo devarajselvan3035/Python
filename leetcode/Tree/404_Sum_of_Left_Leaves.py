@@ -22,29 +22,25 @@ from typing import Optional
 
 def sumOfLeftLeaves(root: Optional[Node]) -> int:
     leftSum = 0
+    queue = [root]
 
-    def leftLeaves(root: Node, flag: str) -> int:
-        if (
-            (not root.left or not root.left.value)
-            and (not root.right or not root.right.value)
-            and flag == "L"
-        ):
-            return root.value
-        if (
-            (not root.left or not root.left.value)
-            and (not root.right or not root.right.value)
-            and flag == "R"
-        ):
-            return 0
-        leftVal = leftLeaves(root.left, "L")
-        rightVal = leftLeaves(root.right, "R")
-        print(f"root {root.value}, sum {leftVal + rightVal}")
-        return leftVal + rightVal
+    while queue:
+        curd = queue[0]
+        queue = queue[1:]
 
-    return leftLeaves(root, "")
+        if curd.left and curd.left.value:
+            queue.append(curd.left)
+            if not curd.left.left and not curd.left.right:
+                leftSum += curd.left.value
+
+        if curd.right and curd.right.value:
+            queue.append(curd.right)
+
+    return leftSum
 
 
 ip = [3, 9, 20, None, None, 15, 7]
+# ip = [1, 2]
 bt = BinaryTree()
 for i in ip:
     bt.insert_queue(i)
