@@ -1,87 +1,50 @@
-# class Node:
-#     def __init__(self, value=None, left=None, right=None) -> None:
-#         self.value = value
-#         self.left = left
-#         self.right = right
-#
-#
-# class BinaryTree:
-#     def __init__(self) -> None:
-#         self.root = None
-#         self.stack = []
-#
-#     # This insert method implemented using queue with the list function, This process
-#     def insert_queue(self, value) -> None:
-#         newNode = Node(value)
-#         if self.root is None:
-#             self.root = newNode
-#         else:
-#             queue = []
-#             queue.append(self.root)
-#
-#             while True:
-#                 temp = queue[0]
-#                 queue = queue[1:]
-#
-#                 if temp.left is None:
-#                     temp.left = newNode
-#                     break
-#                 elif temp.left.value is not None:
-#                     queue.append(temp.left)
-#
-#                 if temp.right is None:
-#                     temp.right = newNode
-#                     break
-#                 elif temp.right.value is not None:
-#                     queue.append(temp.right)
-#
-#     def _recursiveInsert(self, root, value):
-#         if root.left is None:
-#             root.left = Node(value)
-#         elif root.right is None:
-#             root.right = Node(value)
-#         else:
-#             self._recursiveInsert(root.left, value)
-#
-#     def inOrder(self, root):
-#         if root:
-#             self.inOrder(root.left)
-#             print(root.value)
-#             self.inOrder(root.right)
-#
-#     def DFS(self, root):
-#         if root is None:
-#             return None
-#         queue = [root]
-#         while queue:
-#             node = queue[0]
-#             queue = queue[1:]
-#             print(node.value, end=" ")
-#             if node.left:
-#                 queue.append(node.left)
-#             if node.right:
-#                 queue.append(node.right)
-#
-class Node:
+from PrintTree import PrintTree
 
-    def __init__(self, value:None) -> None:
+
+class Node:
+    def __init__(self, value: None) -> None:
         self.value = value
         self.left = None
         self.right = None
 
+
 class BinaryTree:
     def __init__(self) -> None:
         self.root = None
-        self.queue = [] 
-        self.childs = 0
+        self.queue = []
+        self.leftChild = False
+        self.rightChild = False
 
     def insert_queue(self, value) -> None:
-        if self.root is None:
+        # NOTE: Check it the root node is empty and value without None otherwise if yes add first value to root node
+        if self.root is None and value:
             self.root = Node(value)
             self.queue.append(self.root)
-        else:
+            return
+        # NOTE: Below condition check curdNode both left and right nodes are filled something (value or None)
+        if self.leftChild and self.rightChild:
+            self.queue = self.queue[1:]
+            self.leftChild, self.rightChild = False, False
+        # NOTE: To ensure data integrity, the if statement validates that a node exists within the queue before any additional data is appended to it.
+        if self.queue:
             curdNode = self.queue[0]
-            if value and not curdNode.left:
-                curdNode.left = Node(value)
-            elif value and not curdNode.ri
+            # NOTE: Check if the left child is empty (without value or None) fill the value and change curdNode left child status to `True`.
+            if not self.leftChild:
+                if value:
+                    curdNode.left = Node(value)
+                    self.queue.append(curdNode.left)
+                self.leftChild = True
 
+            # NOTE: Check if the right child is empty (without value or None) fill the value and change curdNode right child status to `True`.
+            else:
+                if value:
+                    curdNode.right = Node(value)
+                    self.queue.append(curdNode.right)
+                self.rightChild = True
+
+
+ip = [None, 1, 2, 3, 4]
+bt = BinaryTree()
+for i in ip:
+    bt.insert_queue(i)
+PrintTree(bt.root)
