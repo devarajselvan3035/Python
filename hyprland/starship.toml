@@ -1,0 +1,24 @@
+
+# ~/.config/starship.toml
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Shows the Python version and virtual environment name
+[python]
+# The format string uses the Nerd Font symbol for Python (🐍)
+# and displays the virtual environment name in parentheses.
+format = 'via [${symbol}(\\($virtualenv\\) )]($style)'
+style = "bold yellow"
+symbol = "🐍 "
+# If you don't use Nerd Fonts, you can change the symbol to a plain character
+# symbol = "py "
+
+# Shows the current directory
+# Shows git branch and status
+[git_branch]
+symbol = "🌱 "
+style = "bold purple"
+
+[git_status]
+style = "bold purple"

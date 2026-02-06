@@ -1,0 +1,88 @@
+*{
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  min-height: 30px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 2px;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#network,
+#taskbar,
+#clock,
+#custom-screenrecording-indicator,
+#bluetooth,
+#custom-update {
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 2px;
+  background: #83a598;
+  color: #282828 
+}
+
+
+#battery.warning {
+  background: #fb4934;
+}
+#battery.charging {
+  background: #b8bb26;
+}
+
+#custom-expand-icon {
+  margin-right: 4px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+#custom-screenrecording-indicator {
+  min-width: 4px;
+  margin-left: 8.75px;
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: #a55555;
+}
+
