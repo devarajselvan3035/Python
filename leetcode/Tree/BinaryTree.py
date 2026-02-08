@@ -41,10 +41,3 @@ class BinaryTree:
                     curdNode.right = Node(value)
                     self.queue.append(curdNode.right)
                 self.rightChild = True
-
-
-ip = [None, 1, 2, 3, 4]
-bt = BinaryTree()
-for i in ip:
-    bt.insert_queue(i)
-PrintTree(bt.root)
