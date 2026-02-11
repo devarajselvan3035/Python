@@ -29,6 +29,7 @@ class BinaryTree:
         if self.queue:
             curdNode = self.queue[0]
             # NOTE: Check if the left child is empty (without value or None) fill the value and change curdNode left child status to `True`.
+            #
             if not self.leftChild:
                 if value:
                     curdNode.left = Node(value)

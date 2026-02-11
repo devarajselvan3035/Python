@@ -32,8 +32,6 @@ def PrintTree(root):
         seg = width // (pow(2, i + 1))
         for n in l:
             valstr = str(n[0].value)
-            if valstr is None:
-                valstr = "N"
             if n[3] == "r":
                 linestr += (
                     " " * (n[2] - preline - 1 - seg - seg // 2)

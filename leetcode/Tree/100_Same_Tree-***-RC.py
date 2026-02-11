@@ -14,8 +14,12 @@ Input: p=[1,2], q=[1, None, 2]
 Output: False
 """
 
+import sys
+
 from BinaryTree import BinaryTree, Node
 from typing import Optional
+
+form
 
 
 # NOTE: None node as a base coase for the recursion.
@@ -29,7 +33,7 @@ def isSameTree(p: Optional[Node], q: Optional[Node]) -> bool:
 
 # p, q = [1, 2, 3], [1, 2, 3]
 p, q = [1, None, 3], [1, 3]
-ptree = BinaryTree()
+ptree = BinaryTree.BinaryTree()
 qtree = BinaryTree()
 
 for pv in p:
