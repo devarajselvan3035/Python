@@ -1,5 +1,5 @@
 """
-703. Kth Largest Element in a Stream.
+703. Kth Largest Element in a Stream (***)
 =====================================
 You are part of a university admissions office and need to keep track of the kth highest test score from applicants in real-time. This helps to determine cut-off marks for interviews and admissions dynamically as new applicants submit their scores.
 
@@ -38,10 +38,10 @@ kthLargest.add(9); // return 8
 
 from typing import List
 import heapq
-from Heap import Heap
 
 
-class KthLargest:
+# NOTE: O(N^2) Time Complexity
+class KthLargest1:
     def __init__(self, k: int, nums: List[int]):
         self.k = k
         self.nums = nums
@@ -51,12 +51,26 @@ class KthLargest:
         return sorted(self.nums)[-1 * self.k]
 
 
-ip = [3, 2, 6, 1, 9, 4, 0]
-# heapq.heapify(ip)
-# heapq.heapify_max(ip)
-# heapq.heappush_max(ip, 10)
-# print(ip)
+# NOTE: O(NlogN) Time Complexity
+class KthLargest:
+    def __init__(self, k: int, nums: List[int]) -> None:
+        self.k = k
+        self.nums = nums
+        heapq.heapify(self.nums)
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)
 
-heap = Heap()
-ans = heap.heapify(ip, "min")
-print(ans)
+    def add(self, val: int) -> int:
+        print(self.nums)
+        heapq.heappush(self.nums, val)
+        if len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+        return self.nums[0]
+
+
+heap = KthLargest(3, [4, 5, 8, 2])
+print(heap.add(3))
+print(heap.add(5))
+print(heap.add(10))
+print(heap.add(9))
+print(heap.add(4))
