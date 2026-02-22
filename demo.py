@@ -15,4 +15,4 @@
 # print(set1 > set2)
 # print(set1 >= set2)
 #
-print("hello world")
+print("hello")

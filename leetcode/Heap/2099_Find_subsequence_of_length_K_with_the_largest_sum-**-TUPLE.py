@@ -1,5 +1,5 @@
 """
-2099. Find Subsequence of Length K with the Largest Sum
+2099. Find Subsequence of Length K with the Largest Sum (**)(TUPLE)
 =======================================================
 You are given an integer array nums and an integer k. You want to find a subsequence of nums of length k that has the largest sum.
 Return any such subsequence as an integer array of length k.
@@ -31,12 +31,12 @@ from typing import List
 
 def maxSubSequence(nums: List[int], k: int) -> List[int]:
     res = []
-    minIdx, maxIdx = 
-    for n in nums:
-        minVal = 
-
-
-        
+    for idx, val in enumerate(nums):
+        heapq.heappush(res, (val, idx))
+        if len(res) > k:
+            heapq.heappop(res)
+    res.sort(key=lambda x: x[-1])
+    return [val for val, _ in res]
 
 
 # nums, k = [2, 1, 3, 3], 2
