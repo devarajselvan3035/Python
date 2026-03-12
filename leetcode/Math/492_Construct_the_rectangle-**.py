@@ -1,5 +1,5 @@
 """
-492. Construct the Rectangle
+492. Construct the Rectangle (**)
 ============================
 A web developer needs to know how to design a web page's size. So, given a specific rectangular web page’s area, your job by now is to design a rectangular web page, whose length L and width W satisfy the following requirements:
 - The area of the rectangular web page you designed must equal to the given target area.
@@ -21,3 +21,32 @@ Example 3:
 Input: area = 122122
 Output: [427,286]
 """
+
+from typing import List
+import math
+
+
+def constructRectangle1(area: int) -> List[int]:
+    s = int(math.sqrt(area))
+    while area % s != 0:
+        s -= 1
+    b = area // s
+    return [b, s]
+
+
+def constructRectangle(area: int) -> List[int]:
+    diff = area + 1
+    res = [1, 1]
+    for w in range(1, (area // 2) + 1):
+        if area % w == 0:
+            l = area // w
+            if abs(l - w) < diff:
+                res = [l, w]
+                diff = abs(l - w)
+    return res
+
+
+area = 4
+area = 122122
+area = 1
+print(constructRectangle(area))
