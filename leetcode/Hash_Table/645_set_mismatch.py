@@ -18,14 +18,9 @@ from typing import List
 
 
 def findErrorNums(nums: List[int]) -> List[int]:
-    nums = [0] + nums
-    idx = 0
-    while idx < len(nums) - 1:
-        if nums[idx + 1] != nums[idx] + 1:
-            return [nums[idx + 1], nums[idx] + 1]
-        idx += 1
-
-    return [0]
+    res =[]
+    numsDict = {}
+    for i in range
 
 
 # nums = [1, 2, 2, 4]
