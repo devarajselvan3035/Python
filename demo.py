@@ -28,3 +28,4 @@ nums = [2, 6, 4, 8, 10, 9, 15]
 # nums = [1, 3, 2, 2, 2]
 # nums = [1, 2, 3, 3, 3]
 print(find(nums))
+print("hello")

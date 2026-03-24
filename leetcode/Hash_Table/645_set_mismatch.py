@@ -18,11 +18,23 @@ from typing import List
 
 
 def findErrorNums(nums: List[int]) -> List[int]:
-    res =[]
-    numsDict = {}
-    for i in range
+    res = [0, 0]
+    count = {}
+    for n in nums:
+        if n in count:
+            count[n] += 1
+        else:
+            count[n] = 1
+
+    for i in range(1, len(nums) + 1):
+        if i not in count:
+            res[1] = i
+        elif count[i] == 2:
+            res[0] = i
+
+    return res
 
 
-# nums = [1, 2, 2, 4]
-nums = [1, 3]
+nums = [1, 2, 2, 4]
+nums = [1, 1]
 print(findErrorNums(nums))
