@@ -1,5 +1,7 @@
 from typing import List
 
+print("hello world")
+
 
 def find(nums: List[int]) -> int:
     n = len(nums)
