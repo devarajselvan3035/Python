@@ -21,3 +21,39 @@ Input: licensePlate = "1s3 456", words = ["looks","pest","stew","show"]
 Output: "pest"
 Explanation: licensePlate only contains the letter 's'. All the words contain 's', but among these "pest", "stew", and "show" are shortest. The answer is "pest" because it is the word that appears earliest of the 3.
 """
+
+from typing import is_protocol
+
+
+def shortestCompletingWord(licensePlate: str, words: List[str]) -> str:
+    maxVal, res = 0, ""
+    lpCount = Count(licensePlate)
+
+    for word in words:
+        wordCount = Count(word)
+        count = 0
+        for w in wordCount:
+            if w in lpCount:
+                count += min(lpCount[w], wordCount[w])
+
+        if count > maxVal:
+            maxVal = count
+            res = word
+
+        elif count == maxVal:
+            res = min([res, word], key=len)
+
+    return res
+
+
+def Count(s: str) -> dict:
+    s = s.lower()
+    count = {}
+    for c in s:
+        count[c] = count.setdefault(c, 0) + 1
+    return count
+
+
+licensePlate, words = "1s3 PSt", ["step", "steps", "stripe", "stepple"]
+licensePlate, words = "1s3 456", ["looks", "pest", "stew", "show"]
+print(shortestCompletingWord(licensePlate, words))

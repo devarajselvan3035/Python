@@ -16,19 +16,29 @@ from typing import List
 
 
 def commonChars(words: List[str]) -> List[str]:
-    minWord = min(words, key=len)
-    minWordCount = wordCount(minWord)
+    res = []
+    commonCount = wordCount(words[0])
+    for word in words:
+        count = wordCount(word)
+        for cw, cc in commonCount.items():
+            if cw in count:
+                commonCount[cw] = min(cc, count[cw])
+            else:
+                commonCount[cw] = 0
 
-:wqa:w===
+    for w, c in commonCount.items():
+        res += [w] * c
 
-def wordCount(s: str) -> dict
-    count = {}
+    return res
+
+
+def wordCount(s: str) -> dict:
+    count: dict = {}
     for c in s:
         count[c] = count.setdefault(c, 0) + 1
     return count
 
-      
-
 
 words = ["bella", "label", "roller"]
+# words = ["cool", "lock", "cook"]
 print(commonChars(words))

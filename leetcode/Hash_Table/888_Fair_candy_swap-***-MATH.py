@@ -1,4 +1,7 @@
 """
+888. Fair Candy Swap (***)
+====================
+
 Alice and Bob have a different total number of candies. You are given two integer arrays aliceSizes and bobSizes where aliceSizes[i] is the number of candies of the ith box of candy that Alice has and bobSizes[j] is the number of candies of the jth box of candy that Bob has.
 
 Since they are friends, they would like to exchange one candy box each so that after the exchange, they both have the same total amount of candy. The total amount of candy a person has is the sum of the number of candies in each box they have.
@@ -22,25 +25,20 @@ from typing import List
 
 
 def fairCandySwap(aliceSizes: List[int], bobSizes: List[int]) -> List[int]:
-    aliceSizes.sort(reverse=True)
-    bobSizes.sort(reverse=True)
-
     aliceSum = sum(aliceSizes)
     bobSum = sum(bobSizes)
 
-    minLength = len(aliceSizes) if len(aliceSizes) < len(bobSizes) else len(bobSizes)
+    bobSet = set(bobSizes)
 
-    for i in range(minLength):
-        aliceMax = aliceSizes[i]
-        bobMax = bobSizes[i]
+    diff = abs(aliceSum - bobSum) // 2
 
-        aliceTemp = (aliceSum - aliceMax) + bobMax
-        bobTemp = (bobSum - bobMax) + aliceMax
-
-        if aliceTemp == bobTemp:
-            return [aliceMax, bobMax]
+    for a in aliceSizes:
+        if diff + a in bobSet:
+            return [a, a + diff]
 
 
 a, b = [2], [1, 3]
 a, b = [35, 17, 4, 24, 10], [63, 21]
+a, b = [2], [1, 3]
+a, b = [1, 2, 5], [2, 4]
 print(fairCandySwap(a, b))
