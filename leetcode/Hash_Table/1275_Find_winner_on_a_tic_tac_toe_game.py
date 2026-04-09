@@ -35,38 +35,30 @@ from typing import List
 
 
 def tictactoe(moves: List[List[int]]) -> str:
-    xRow, xCol, oRow, oCol = [], [], [], []
-    for idx, move in enumerate(moves):
-        if idx // 2 == 0:
-            xRow.append(move[0])
-            xCol.append(move[1])
-        else:
-            oRow.append(move[0])
-            oCol.append(move[1])
+    xRow, xCol, oRow, oCol, xDig, oDig = dict(), dict(), dict(), dict(), set(), set()
+    for idx, (row, col) in enumerate(moves):
+        if idx % 2 == 0:
+            xRow[row] = xRow.setdefault(row, 0) + 1
+            xCol[col] = xCol.setdefault(col, 0) + 1
+            if row == col:
+                xDig.add(row)
 
-    xRowLen, xColLen, oRowLen, oColLen = (
-        len(set(xRow)),
-        len(set(xCol)),
-        len(set(oRow)),
-        len(set(oCol)),
-    )
-    print(xRow, xCol, oRow, oCol)
-    if (
-        (xRowLen == 3 and xColLen == 3)
-        or (xRowLen == 3 and xColLen == 1)
-        or (xColLen == 3 and xRowLen == 1)
-    ):
+        else:
+            oRow[row] = oRow.setdefault(row, 0) + 1
+            oCol[col] = oCol.setdefault(col, 0) + 1
+            if row == col:
+                oDig.add(row)
+
+    print(xRow, xCol, oRow, oCol, xDig, oDig)
+
+    if 3 in xRow.values() or 3 in xCol.values() or len(xDig) == 3:
         return "A"
-    elif (
-        (oRowLen == 3 and oColLen == 3)
-        or (oRowLen == 3 and oColLen == 1)
-        or (oColLen == 3 and oRowLen == 2)
-    ):
+    elif 3 in oRow.values() or 3 in oCol.values() or len(oDig) == 3:
         return "B"
     else:
         return "Draw"
 
 
 moves = [[0, 0], [1, 1], [0, 1], [0, 2], [1, 0], [2, 0]]
-moves = [[0, 0], [1, 1], [2, 0], [1, 0], [1, 2], [2, 1], [0, 1], [0, 2], [2, 2]]
+# moves = [[0, 0], [1, 1], [2, 0], [1, 0], [1, 2], [2, 1], [0, 1], [0, 2], [2, 2]]
 print(tictactoe(moves))
