@@ -15,41 +15,14 @@ Output: 8
 from Singel_LinkedList import LinkedList, Node
 
 
-def getIntersectionNode(headA: Node, headB: Node) -> Node:
-    headA_add = []
+def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    hashsetA = set()
     while headA:
-        headA_add.append(headA)
+        hashsetA.add(headA)
         headA = headA.next
-    print(headA_add)
 
-
-llA = LinkedList()
-llB = LinkedList()
-llC = LinkedList()
-
-for A in range(3, 6):
-    llA.append(A)
-
-for B in range(1, 4):
-    llB.append(B)
-
-for C in range(8, 10):
-    llB.append(C)
-
-llACurdNode = llA.head
-while llACurdNode.next:
-    llACurdNode = llACurdNode.next
-llACurdNode.next = llC.head
-
-llBCurdNode = llB.head
-while llBCurdNode.next:
-    llBCurdNode = llBCurdNode.next
-llBCurdNode.next = llC.head
-
-headA = llA.head
-while headA:
-    print(headA.value)
-    headA = headA.next
-
-
-# print(getIntersectionNode(llA.head, llB.head))
+        while headB:
+            if headB in hashsetA:
+                return headB
+            headB = headB.next
+        return None

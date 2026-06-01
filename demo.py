@@ -1,47 +1,39 @@
-import math
-from typing im
+def reverseSubstring(s: str) -> str:
+    s = s + " "
+    string = []
+    substirng = ""
+    for chr in s:
+        if chr == " ":
+            string.append(substirng)
+            substirng = ""
+        else:
+            substirng = chr + substirng
 
-class SimpleRNN:
-    def __init__(self, input_size, hidden_size):
-        # Initialize weights with small random-ish values
-        self.w_xh = [[0.1] * hidden_size for _ in range(input_size)]  # Input to Hidden
-        self.w_hh = [
-            [0.1] * hidden_size for _ in range(hidden_size)
-        ]  # Hidden to Hidden
-        self.bias = [0] * hidden_size
-        self.hidden_size = hidden_size
-
-    def sigmoid(self, x):
-        return 1 / (1 + math.exp(-x))
-
-    def forward(self, inputs):
-        # Start with a hidden state of zeros (no memory yet)
-        h_t = [0] * self.hidden_size
-
-        # Process each item in the sequence
-        for x_t in inputs:
-            new_h = [0] * self.hidden_size
-            for j in range(self.hidden_size):
-                # 1. Contribution from current input
-                input_part = sum(x_t[i] * self.w_xh[i][j] for i in range(len(x_t)))
-
-                # 2. Contribution from previous hidden state (the memory)
-                hidden_part = sum(
-                    h_t[i] * self.w_hh[i][j] for i in range(self.hidden_size)
-                )
-
-                # 3. Combine and apply activation function
-                new_h[j] = self.sigmoid(input_part + hidden_part + self.bias[j])
-
-            h_t = new_h  # Update memory for the next step
-
-        return h_t
+    return " ".join(string)
 
 
-# --- Usage Example ---
-# Input: A sequence of 3 items, each with 2 features
-sequence = [[1, 0], [0, 1], [1, 1]]
-rnn = SimpleRNN(input_size=2, hidden_size=3)
+print(reverseSubstring("hello world"))
 
-output_state = rnn.forward(sequence)
-print(f"Final Hidden State (Memory): {output_state}")
+
+def getSmallCommonValue(l1: list[int], l2: list[int]) -> float:
+    min_val = float("inf")
+    l, r = 0, 0
+    while l < len(l1) and r < len(l2):
+        if l1[l] == l2[r]:
+            min_val = min(min_val, l1[l])
+            l += 1
+            r += 1
+        elif l1[l] < l2[r]:
+            l += 1
+        else:
+            r += 1
+    return min_val
+
+
+# print(getSmallCommonValue([1, 2, 3, 6], [2, 3, 4, 5]))
+#
+def moveZeros(arr: list[int]) -> list[int]:
+    l = 0
+    for r in range(len(arr)):
+        if arr[r] != 0:
+            arr[l]
