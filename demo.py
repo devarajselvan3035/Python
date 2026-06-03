@@ -1,39 +1,20 @@
-def reverseSubstring(s: str) -> str:
-    s = s + " "
-    string = []
-    substirng = ""
-    for chr in s:
-        if chr == " ":
-            string.append(substirng)
-            substirng = ""
-        else:
-            substirng = chr + substirng
-
-    return " ".join(string)
-
-
-print(reverseSubstring("hello world"))
-
-
-def getSmallCommonValue(l1: list[int], l2: list[int]) -> float:
-    min_val = float("inf")
+def intersection(arr1: list[int], arr2: list[int]) -> list[int]:
+    arr1.sort()
+    arr2.sort()
     l, r = 0, 0
-    while l < len(l1) and r < len(l2):
-        if l1[l] == l2[r]:
-            min_val = min(min_val, l1[l])
+    res = []
+    idx = 0
+    while l < len(arr1) and r < len(arr2):
+        if arr1[l] == arr2[r]:
+            res.append(arr1[l])
             l += 1
             r += 1
-        elif l1[l] < l2[r]:
+        elif arr1[l] < arr2[r]:
             l += 1
-        else:
+        elif arr2[r] < arr1[l]:
             r += 1
-    return min_val
+    return res
 
 
-# print(getSmallCommonValue([1, 2, 3, 6], [2, 3, 4, 5]))
-#
-def moveZeros(arr: list[int]) -> list[int]:
-    l = 0
-    for r in range(len(arr)):
-        if arr[r] != 0:
-            arr[l]
+num1, num2 = [1, 2, 3, 1], [1, 3, 2, 1]
+print(intersection(num1, num2))

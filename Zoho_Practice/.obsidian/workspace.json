@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Git_cheet_sheet.md",
-                "mode": "source",
+                "file": "Notes/02 Continuous Delivery vs Continuous Deployment.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Git_cheet_sheet"
+              "title": "02 Continuous Delivery vs Continuous Deployment"
             }
           }
         ]
@@ -185,8 +185,10 @@
   },
   "active": "173e1d931c58f380",
   "lastOpenFiles": [
+    "Notes/01 Build Deployment.md",
+    "Notes/02 Continuous Delivery vs Continuous Deployment.md",
+    "Notes/00 Git_cheet_sheet.md",
     "Notes/zoho_interview_preparation.md",
-    "Notes/Git_cheet_sheet.md",
     "Linked_List_QA.ipynb",
     "Hash_Set.py~",
     "Hash_Set.py",
