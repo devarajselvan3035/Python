@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/02 Continuous Delivery vs Continuous Deployment.md",
-                "mode": "preview",
+                "file": "Notes/03 Networking Concepts - DevOps.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 Continuous Delivery vs Continuous Deployment"
+              "title": "03 Networking Concepts - DevOps"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "9a131bb53b265888",
@@ -185,8 +186,9 @@
   },
   "active": "173e1d931c58f380",
   "lastOpenFiles": [
-    "Notes/01 Build Deployment.md",
     "Notes/02 Continuous Delivery vs Continuous Deployment.md",
+    "Notes/03 Networking Concepts - DevOps.md",
+    "Notes/01 Build Deployment.md",
     "Notes/00 Git_cheet_sheet.md",
     "Notes/zoho_interview_preparation.md",
     "Linked_List_QA.ipynb",

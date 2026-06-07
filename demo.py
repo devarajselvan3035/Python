@@ -1,20 +1,33 @@
-def intersection(arr1: list[int], arr2: list[int]) -> list[int]:
-    arr1.sort()
-    arr2.sort()
-    l, r = 0, 0
-    res = []
-    idx = 0
-    while l < len(arr1) and r < len(arr2):
-        if arr1[l] == arr2[r]:
-            res.append(arr1[l])
-            l += 1
-            r += 1
-        elif arr1[l] < arr2[r]:
-            l += 1
-        elif arr2[r] < arr1[l]:
-            r += 1
-    return res
+def matrix(mat: list[list[str]]) -> list[str]:
+
+    result = []
+
+    def backtracking(position: list[int], path: list[str]):
+        if position[0] == len(mat) or position[-1] == len(mat[0]):
+            return
+        elif position == [len(mat) - 1, len(mat[0]) - 1]:
+            print("inner", position, path)
+            path_str = "".join(path)
+            result.append(path_str)
+            return
+
+        path = path + [mat[position[0]][position[-1]]]
+        print(position, path)
+
+        backtracking([position[0], position[-1] + 1], path)
+        path.pop()
+
+        path = path + [mat[position[0]][position[-1]]]
+        backtracking(
+            [position[0] + 1, position[-1]], path + [mat[position[0]][position[-1]]]
+        )
+        path.pop()
+
+    backtracking([0, 0], [])
+    return result
 
 
-num1, num2 = [1, 2, 3, 1], [1, 3, 2, 1]
-print(intersection(num1, num2))
+mat = [["a", "b"], ["b", "c"]]
+mat = [["a", "x", "a"], ["x", "a", "x"], ["a", "x", "a"]]
+
+print(matrix(mat))
