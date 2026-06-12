@@ -1,9 +1,13 @@
 # Phase 1: The Physical Server Era
+
+[Networking Interview questions for Devops (2026)](https://medium.com/@shindeshubhangi463/50-must-prepare-networking-interview-questions-for-devops-engineers-2025-guide-2b7e7d56e8f1)
+
 ## IP Address
+
 An **IP address** is a unique numerical label assigned to every device connected to a network that uses the Internet Protocol for communication. It serves two primary functions: host or network interface identification, and location addressing.
 
 - **IPv4** addresses are 32-bit numbers usually displayed in dot-decimal notation (e.g., `192.168.1.50`).
-    
+  
 - **IPv6** addresses are 128-bit numbers displayed in hexadecimal (e.g., `2001:db8::ff00:42:8329`) to accommodate the exploding number of global devices. Addresses are further divided into **Public IPs** (globally routable on the internet) and **Private IPs** (used only within local networks).
 
 **Practical Example**,
@@ -58,15 +62,15 @@ A single server with the IP address `10.0.5.5` is running two separate services 
 To see how this mental map operates end-to-end, let's track a request from an employee's machine to an internal tool:
 
 1. **The Intent:** An employee on their laptop (**Host**) wants to check their benefits on `payroll.corporate.local`.
-    
+   
 2. **DNS Resolution:** The laptop doesn't know where that is. It queries the corporate switchboard (**DNS**), which responds: _"`payroll.corporate.local` is located at `10.0.10.25`."_
-    
+   
 3. **Addressing & Packaging:** The laptop prepares data packets, marking the destination address as `10.0.10.25` and the target desk as Port `443` (HTTPS). The data exits the laptop through its wireless antenna mapping (**Network Interface `wlan0`**).
-    
+   
 4. **Routing:** The packets travel through the air to the office building's mailroom (**Router**). The router reads the destination `10.0.10.25`, determines it belongs in the secure server room network, and routes it through the appropriate internal network cables (**Network**).
-    
+   
 5. **Delivery:** The packet arrives at the target machine (**Server**) via its physical network card interface (**`eth0`**).
-    
+   
 6. **Processing:** The server's operating system reads the packet, sees it is directed to **Port `443`**, and hands it off to the waiting Web Service daemon, which compiles the payroll data and sends a response back down the exact same chain.
 # Phase 2: Virtual Machines & Hypervisors
 ## Virtual Machine
@@ -96,7 +100,7 @@ A **firewall** is a network security device or software layer that monitors and 
 A **Subnet** (Sub-network) is a logical subdivision of an IP network inside a VPC. By slicing the master CIDR block into smaller chunks (e.g., `/24` ranges), you isolate different tiers of an application.
 
 - **Public Subnets** are designed for internet-facing resources. They are linked to an **Internet Gateway (IGW)**, meaning resources inside have public IPs and can directly exchange packets with the outside world.
-    
+  
 - **Private Subnets** are completely isolated from direct internet access. Resources placed here receive only internal private IPs, sealing them off from external scanning and inbound threats.
 - A Section of your VPC's IP range in one availability zone use to organize resources
 - Public subnets have internet access, private ones don't.
