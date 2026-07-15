@@ -1,5 +1,5 @@
 """
-Given an integer array nums, return the third distict maximum number in this array. If the third maximum does not exist, return the maximum number
+Given an integer array nums, return the third distict maximum numbe  in this array. If the third maximum does not exist, return the maximum number
 
 Input: nums = [2, 2, 3, 1]
 Output: 1

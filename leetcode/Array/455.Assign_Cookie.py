@@ -12,10 +12,13 @@ You need to output 1.
 
 
 def findContentChildren(g: list, s: list) -> int:
-    l, r, res = 0, 0, 0
+    l, r = 0, 0
+    res = 0
+    total = 0
     while l < len(g) and r < len(s):
-        if s[r] >= g[l]:
+        if g[l] <= s[r] + total:
             res += 1
+            total += s[r] - g[l]
         l += 1
         r += 1
     return res
@@ -23,4 +26,5 @@ def findContentChildren(g: list, s: list) -> int:
 
 # g, s = [1, 2, 3], [1, 1]
 g, s = [1, 2], [1, 2, 3]
+g, s = [1, 2, 5], [1, 5, 1]
 print(findContentChildren(g, s))

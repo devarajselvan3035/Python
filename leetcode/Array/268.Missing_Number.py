@@ -9,6 +9,6 @@ def missingNumber(nums: list) -> int:
 
 
 # nums = [3, 0, 1]
-# nums = [0, 1]
-nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]
+nums = [0, 1]
+# nums = [9, 6, 4, 2, 3, 5, 7, 0, 1]
 print(missingNumber(nums))
