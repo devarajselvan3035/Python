@@ -16,6 +16,18 @@ Output: "bacd"
 
 
 def reverseStr(s: str, k: int) -> str:
+    # Convert string to a list since strings are immutable in Python
+    chars = list(s)
+
+    # Loop through the string, jumping 2k steps at a time
+    for i in range(0, len(chars), 2 * k):
+        # Reverse the first k characters of the current 2k block
+        chars[i : i + k] = chars[i : i + k][::-1]
+
+    return "".join(chars)
+
+
+def reverseStr1(s: str, k: int) -> str:
     res = ""
     idx = 0
     if len(s) <= k:

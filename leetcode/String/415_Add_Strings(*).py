@@ -20,6 +20,36 @@ Output: "0"
 
 
 def addStrings(num1: str, num2: str) -> str:
+    res = []
+    carry = 0
+
+    # Start pointers at the end of both strings
+    i = len(num1) - 1
+    j = len(num2) - 1
+
+    # Loop as long as there are digits to process or a leftover carry
+    while i >= 0 or j >= 0 or carry:
+        # Get the digit values (or 0 if we've run out of digits for that number)
+        digit1 = ord(num1[i]) - ord("0") if i >= 0 else 0
+        digit2 = ord(num2[j]) - ord("0") if j >= 0 else 0
+
+        # Calculate sum and new carry
+        total = digit1 + digit2 + carry
+        carry = total // 10
+        current_digit = total % 10
+
+        # Append the current digit to our results list
+        res.append(str(current_digit))
+
+        # Move pointers left
+        i -= 1
+        j -= 1
+
+    # Since we added digits from right to left, reverse the result list
+    return "".join(res[::-1])
+
+
+def addStrings1(num1: str, num2: str) -> str:
     res = ""
     rem = 0
     if len(num1) < len(num2):

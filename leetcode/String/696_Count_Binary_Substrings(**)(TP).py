@@ -19,23 +19,29 @@ Explanation: There are 4 substrings: "10", "01", "10", "01" that have equal numb
 """
 
 
-def countBinarySubstring(s: str) -> int:
-    cur, pre = 0, 0
-    l, r = 0, 0
-    count = 0
-    res = 0
-    while r <= len(s):
-        if r == len(s) or s[l] != s[r]:
-            pre = cur
-            cur = count
-            res += min(pre, cur)
-            l = r
-            count = 0
-        count += 1
-        r += 1
-    return res
+def countBinarySubstrings(s: str) -> int:
+    ans = 0
+    prev_group = 0
+    curr_group = 1  # Start at 1 because we always have at least the first character
+
+    for i in range(1, len(s)):
+        # If the character changes, the group changes
+        if s[i] != s[i - 1]:
+            # Add the valid combinations formed by the last two groups
+            ans += min(prev_group, curr_group)
+            # Move current group to previous, reset current group to 1
+            prev_group = curr_group
+            curr_group = 1
+        else:
+            # Same character, increment the current group size
+            curr_group += 1
+
+    # Don't forget to add the combinations for the very last group pair!
+    ans += min(prev_group, curr_group)
+
+    return ans
 
 
-# s = "00110011"
-s = "10101"
-print(countBinarySubstring(s))
+s = "00110011"
+# s = "10101"
+print(countBinarySubstrings(s))

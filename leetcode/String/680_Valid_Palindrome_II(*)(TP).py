@@ -19,36 +19,33 @@ Output: false
 
 
 def validPalindrome(s: str) -> bool:
+    # Helper function to check if a substring is a standard palindrome
+    def is_palindrome(left: int, right: int) -> bool:
+        while left < right:
+            if s[left] != s[right]:
+                return False
+            left += 1
+            right -= 1
+        return True
 
-    l, r = 0, len(s) - 1
-    while l < r:
-        if s[l] != s[r]:
-            subL, subR = s[l + 1 : r + 1], s[l:r]
-            return subL[::-1] == subR[::-1]
-        l, r = l + 1, r - 1
-    return True
+    left = 0
+    right = len(s) - 1
 
-
-# 470 / 477 testcases are passed
-def validPalindrome1(s: str) -> bool:
-    l, r = 0, len(s) - 1
-    flag = 0
-    while l < r:
-        if s[l] == s[r]:
-            l += 1
-            r -= 1
-        elif flag == 0 and s[l + 1] == s[r]:
-            l += 1
-            flag = 1
-        elif flag == 0 and s[r - 1] == s[l]:
-            r -= 1
-            flag = 1
+    while left < right:
+        # If characters match, just move the pointers inward
+        if s[left] == s[right]:
+            left += 1
+            right -= 1
         else:
-            return False
+            # Mismatch found! Check both deletion options:
+            # Option 1: Skip the left character -> check s[left + 1 : right]
+            # Option 2: Skip the right character -> check s[left : right - 1]
+            return is_palindrome(left + 1, right) or is_palindrome(left, right - 1)
+
     return True
 
 
 # s = "aba"
-# s = "abca"
-s = "abc"
+s = "abca"
+# s = "abc"
 print(validPalindrome(s))

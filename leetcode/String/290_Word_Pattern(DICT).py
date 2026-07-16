@@ -11,8 +11,6 @@ and a non-empty word in s. Specifically:
 - No two letters map to the same word, and no two words map to the same letter.
 """
 
-from re import split
-
 
 def wordPattern(pattern: str, s: str) -> bool:
     pattern_dict = {}

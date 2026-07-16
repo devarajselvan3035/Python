@@ -27,26 +27,30 @@ Explanation: The student was late 3 consecutive days in the last 3 days, so is n
 
 
 def checkRecord(s: str) -> bool:
-    l, r = 0, 0
-    count = 0
-    while r <= len(s):
-        if l >= len(s):
-            break
-        if r == len(s) or s[l] != s[r]:
-            # print(s[l], count)
-            if s[l] == "A" and count >= 2:
-                return False
-            if s[l] == "L" and count >= 3:
-                return False
-            count = 0
-            l = r
-            r -= 1
-        elif s[l] == s[r]:
-            count += 1
-        r += 1
+    # Condition 1: Total 'A' counts must be strictly less than 2
+    # Condition 2: The substring "LLL" must not be present in the string
+    return s.count("A") < 2 and "LLL" not in s
+
+
+def checkRecord1(s: str) -> bool:
+    absent = 0
+    late = 0
+
+    for c in s:
+        if c == "A":
+            absent += 1
+            late = 0
+        elif c == "L":
+            late += 1
+        else:
+            late = 0
+
+        if absent >= 2 or late >= 3:
+            return False
+
     return True
 
 
-# s = "PPALLP"
-# s = "PPALLL"
-print(checkRecord(s))
+s = "PPALLP"
+s = "PPALLL"
+print(checkRecord1(s))
