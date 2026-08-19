@@ -9,4 +9,5 @@ dependencies = [
     "jupyter>=1.1.1",
     "llama-index>=0.14.23",
     "python-dotenv>=1.2.2",
+    "wallpaper-factory>=0.1.4",
 ]
